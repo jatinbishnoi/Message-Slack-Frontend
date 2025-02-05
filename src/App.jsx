@@ -1,13 +1,15 @@
 import './App.css';
 
-import { Button } from "@/components/ui/button";
+import { Route, Routes } from 'react-router-dom';
+
+import { Auth } from './pages/Auth/Auth';
 function App() {
 
   return (
-    <div>
-      <Button>Click me</Button>
-    </div>
-  )
+    <Routes>
+      <Route path="/auth" element={<Auth />} />
+    </Routes>
+  );
 }
 
 export default App;
