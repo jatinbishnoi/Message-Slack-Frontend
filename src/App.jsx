@@ -7,6 +7,7 @@ import { Modals } from '@/components/organisms/Modals/Modals';
 import { Toaster } from '@/components/ui/toaster';
 import { AppContextProvider } from '@/context/AppContextProvider';
 import { AppRoutes } from '@/Routes';
+
 function App() {
 
 const queryClient = new QueryClient();
@@ -16,6 +17,7 @@ const queryClient = new QueryClient();
       <AppContextProvider>
         <AppRoutes />
         <Modals />
+        {/* <WorkspacePreferencesModal /> */}
       </AppContextProvider>
       <Toaster />
     </QueryClientProvider>
