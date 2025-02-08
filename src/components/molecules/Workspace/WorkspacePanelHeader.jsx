@@ -40,7 +40,7 @@ export const WorkspacePanelHeader = ({ workspace }) => {
                 setOpenInviteModal={setOpenInviteModal}
                 workspaceName={workspace?.name}
                 joinCode={workspace?.joinCode}
-
+                workspace={workspace?._id}
             />
         
         <div
