@@ -1,4 +1,3 @@
-
 import 'quill/dist/quill.snow.css'; // ES6
 
 import { ImageIcon } from 'lucide-react';
@@ -117,7 +116,9 @@ export const Editor = ({
                             size="iconSm"
                             className="ml-auto bg-[#007a6a] hover:bg-[#007a6a]/80 text-white"
                             onClick={() => {
-                                onSubmit({ body: JSON.stringify(quillRef.current?.getContents()) });
+                                const messageContent = JSON.stringify(quillRef.current?.getContents());
+                                onSubmit({ body: messageContent });
+                                quillRef.current?.setText('');
                             }}
                             disabled={false}
                         >
