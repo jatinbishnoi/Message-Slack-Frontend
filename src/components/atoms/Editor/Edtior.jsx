@@ -1,20 +1,30 @@
-/* eslint-disable no-unused-vars */
 import 'quill/dist/quill.snow.css'; // ES6
 
+import { ImageIcon } from 'lucide-react';
 import Quill from 'quill';
 import { useEffect, useRef, useState } from 'react';
+import { PiTextAa } from 'react-icons/pi';
+
+import { Button } from '@/components/ui/button';
+
+import { Hint } from '../Hint/Hint';
+// eslint-disable-next-line no-empty-pattern
 export const Editor = ({
-    variant = 'create',
-    onSubmit,
-    onCancel,
-    placeholder,
-    disabled,
-    defaultValue
 }) => {
+
+    const [isToolbarVisible, setIsToolbarVisible] = useState(false);
 
     const containerRef = useRef(); // reqd to initialize the editor
     const defaultValueRef = useRef();
     const quillRef = useRef();
+
+    function toggleToolbar() {
+        setIsToolbarVisible(!isToolbarVisible);
+        const toolbar = containerRef.current.querySelector('.ql-toolbar');
+        if(toolbar) {
+            toolbar.classList.toggle('hidden');
+        }
+    }
 
     useEffect(() => {
 
@@ -29,7 +39,7 @@ export const Editor = ({
             modules: {
                 toolbar: [
                     ['bold', 'italic', 'underline', 'strike'],
-                    ['link', 'image'],
+                    ['link'],
                     [{ list: 'ordered' }, { list: 'bullet' }],
                     ['clean']
                 ],
@@ -72,6 +82,30 @@ export const Editor = ({
                 className='flex flex-col border border-slate-300 rounded-md overflow-hidden focus-within:shadow-sm focus-within:border-slate-400 bg-white '
             >
                 <div className='h-full ql-custom' ref={containerRef} />
+
+                <div className='flex px-2 pb-2 z-[5]'>
+                    <Hint label={!isToolbarVisible ? 'Show toolbar' : 'Hide toolbar'} side='bottom' align='center'>
+                        <Button
+                            size="iconSm"
+                            variant="ghost"
+                            disabled={false}
+                            onClick={toggleToolbar}
+                        >
+                            <PiTextAa className='size-4' />
+                        </Button>
+                    </Hint>
+
+                    <Hint label="Image">
+                        <Button
+                            size="iconSm"
+                            variant="ghost"
+                            disabled={false}
+                            onClick={() => {}}
+                        >
+                            <ImageIcon className='size-4' />
+                        </Button>
+                    </Hint>
+                </div>
             </div>
 
             <p
