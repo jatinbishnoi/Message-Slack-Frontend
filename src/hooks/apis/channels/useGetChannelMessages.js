@@ -9,6 +9,7 @@ export const useGetChannelMessages = (channelId) => {
     const { isFetched, isError, error, data, isSuccess  } = useQuery({
         queryFn: () => getPaginatedMessages({ channelId, limit: 10, offset: 0, token: auth?.token }),
         queryKey: ['getPaginatedMessages'],
+        cacheTime: 0
     });
     return {
         isFetched,
